@@ -9,7 +9,7 @@ const resetForm = useFormStore((s) => s.resetForm);
 
 
 const handleSubmit = () => {
- alert(`submit sucess`);
+ alert(`Form submitted successfully!`);
 resetForm();
 };
 
