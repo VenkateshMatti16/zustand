@@ -1,5 +1,5 @@
 import React from "react";
-import useFormStore from "../store/formStore";
+import useFormStore from "../store/formstore";
 
 
 const Step3: React.FC = () => {

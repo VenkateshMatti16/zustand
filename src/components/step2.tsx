@@ -1,5 +1,5 @@
  import React, { useState } from "react";
-import useFormStore from "../store/formStore";
+import useFormStore from "../store/formstore";
 
 const Step2: React.FC = () => {
   const formData = useFormStore((s) => s.formData);
@@ -34,7 +34,7 @@ const Step2: React.FC = () => {
         </h2>
 
         <div className="flex flex-col space-y-6">
-          {/* Address */}
+           
           <div className="flex flex-col">
             <label className="text-sm font-medium text-gray-700 mb-1 text-left">
               Address
@@ -47,7 +47,7 @@ const Step2: React.FC = () => {
             />
           </div>
 
-          {/* Phone */}
+           
           <div className="flex flex-col">
             <label className="text-sm font-medium text-gray-700 mb-1 text-left">
               Phone
@@ -60,7 +60,7 @@ const Step2: React.FC = () => {
             />
           </div>
 
-          {/* Roll Number */}
+        
           <div className="flex flex-col">
             <label className="text-sm font-medium text-gray-700 mb-1 text-left">
               Roll Number
@@ -73,7 +73,7 @@ const Step2: React.FC = () => {
             />
           </div>
 
-          {/* College */}
+           
           <div className="flex flex-col">
             <label className="text-sm font-medium text-gray-700 mb-1 text-left">
               College
@@ -102,8 +102,7 @@ const Step2: React.FC = () => {
                          hover:file:bg-blue-100 transition"
             />
           </div>
-
-          {/* Back & Next Buttons */}
+ 
           <div className="flex justify-between mt-4">
             <button
               onClick={prevStep}

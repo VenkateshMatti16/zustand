@@ -36,7 +36,7 @@ const initialForm: FormData = {
 };
 
 
-const useFormStore = create<FormStore>((set) => ({
+const UseFormStore = create<FormStore>((set) => ({
    formData: initialForm,
     step: 1,
      setStep: (s) => set({ step: s }),
@@ -48,4 +48,4 @@ const useFormStore = create<FormStore>((set) => ({
 }));
 
 
-export default useFormStore;
+export default UseFormStore;

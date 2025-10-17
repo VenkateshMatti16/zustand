@@ -1,12 +1,11 @@
 import React from "react";
-import useFormStore from "../store/formStore";
-import Step1 from "./Step1";
-import Step2 from "./Step2";
-import Step3 from "./Step3";
-
+import UseFormStore from "../store/formstore";
+import Step1 from "./step1";
+import Step2 from "./step2";
+import Step3 from "./step3";
 
 const MultiStepForm: React.FC = () => {
-const step = useFormStore((s) => s.step);
+const step = UseFormStore((s) => s.step);
 
 
 return (
