@@ -1,4 +1,4 @@
- import React, { useState } from "react";
+import React, { useState } from "react";
 import useFormStore from "../store/formstore";
 
 const Step2: React.FC = () => {
@@ -13,15 +13,15 @@ const Step2: React.FC = () => {
   const canProceed =
     formData.phonenumber.trim() !== "" && formData.rollnumber.trim() !== "";
 
-   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreview(reader.result as string);
         updateFormData({ profileImage: reader.result as string });
-        setShowModal(true);  
-       };
+        setShowModal(true); // save base64
+      };
       reader.readAsDataURL(file);
     }
   };
@@ -34,7 +34,7 @@ const Step2: React.FC = () => {
         </h2>
 
         <div className="flex flex-col space-y-6">
-           
+          {/* Address */}
           <div className="flex flex-col">
             <label className="text-sm font-medium text-gray-700 mb-1 text-left">
               Address
@@ -47,7 +47,7 @@ const Step2: React.FC = () => {
             />
           </div>
 
-           
+          {/* Phone */}
           <div className="flex flex-col">
             <label className="text-sm font-medium text-gray-700 mb-1 text-left">
               Phone
@@ -60,7 +60,7 @@ const Step2: React.FC = () => {
             />
           </div>
 
-        
+          {/* Roll Number */}
           <div className="flex flex-col">
             <label className="text-sm font-medium text-gray-700 mb-1 text-left">
               Roll Number
@@ -73,20 +73,20 @@ const Step2: React.FC = () => {
             />
           </div>
 
-           
+          {/* College */}
           <div className="flex flex-col">
             <label className="text-sm font-medium text-gray-700 mb-1 text-left">
               College
             </label>
             <input
-              value={formData.collegeName || ""}
-              onChange={(e) => updateFormData({ collegeName: e.target.value })}
+              value={formData.collegename || ""}
+              onChange={(e) => updateFormData({ collegename: e.target.value })}
               placeholder="College name"
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
             />
           </div>
 
-            <div className="flex flex-col">
+          <div className="flex flex-col">
             <label className="text-sm font-medium text-gray-700 mb-1 text-left">
               Upload Profile Image
             </label>
@@ -95,14 +95,11 @@ const Step2: React.FC = () => {
               accept="image/*"
               onChange={handleImageChange}
               onClick={() => preview && setShowModal(true)} // click input opens modal if preview exists
-              className="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4
-                         file:rounded-lg file:border-0
-                         file:text-sm file:font-semibold
-                         file:bg-blue-50 file:text-blue-700
-                         hover:file:bg-blue-100 transition"
+             
             />
           </div>
- 
+
+          {/* Back & Next Buttons */}
           <div className="flex justify-between mt-4">
             <button
               onClick={prevStep}
@@ -125,17 +122,23 @@ const Step2: React.FC = () => {
         </div>
       </div>
 
-       {showModal && preview && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          onClick={() => setShowModal(false)}
-        >
-          <img
-            src={preview}
-            alt="Profile"
-            className="max-w-full max-h-full rounded-lg shadow-lg"
-          />
-        </div>
+       {formData.profileImage && (
+  <div onClick={() => setShowModal(true)} className="cursor-pointer">
+    View Profile Image
+  </div>
+)}
+
+{showModal && (
+  <div
+    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+    onClick={() => setShowModal(false)}
+  >
+    <img
+      src={formData.profileImage}
+      alt="Profile"
+      className="max-w-full max-h-full rounded-lg shadow-lg"
+    />
+  </div>
       )}
     </div>
   );
